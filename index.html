@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Nevek Random Sorrendben</title>
+<style>
+  body { 
+    font-family: Arial, sans-serif; 
+    background-color: black; 
+    color: white; 
+    text-align: center; /* Középre igazítja a tartalmat */
+    padding-top: 20px; /* Kis térköz a lap tetején */
+  }
+  #generate, #names { 
+    font-size: 20px; /* Nagyobb betűméret */
+  }
+  #generate { 
+    padding: 10px 20px; /* Nagyobb gomb */
+    margin-top: 20px; /* Térköz a gomb felett */
+  }
+  #names { 
+    margin-top: 20px; /* Térköz a nevek listája felett */
+  }
+</style>
+</head>
+<body>
+
+<button id="generate">Generate</button>
+<div id="names"></div>
+
+<script>
+  // Nevek tárolása
+  const names = ['Heiko', 'Gábor', 'Vince', 'Jesus'];
+
+  // "Generate" gomb eseménykezelője
+  document.getElementById('generate').addEventListener('click', function() {
+    const shuffledNames = names
+      .map(value => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+
+    // A nevek megjelenítése
+    document.getElementById('names').innerHTML = shuffledNames.join(', ');
+  });
+</script>
+
+</body>
+</html>
