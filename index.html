@@ -8,18 +8,30 @@
     font-family: Arial, sans-serif; 
     background-color: black; 
     color: white; 
-    text-align: center; /* Középre igazítja a tartalmat */
-    padding-top: 20px; /* Kis térköz a lap tetején */
+    text-align: center;
+    padding-top: 20px;
+    display: flex; /* Flexbox beállítása */
+    flex-direction: column; /* Elemek függőleges elrendezése */
+    justify-content: center; /* Elemek függőleges középre igazítása */
+    height: 100vh; /* Teljes magasság */
   }
   #generate, #names { 
-    font-size: 20px; /* Nagyobb betűméret */
+    font-size: 60px; /* Nagyobb méretű szövegek */
   }
   #generate { 
-    padding: 10px 20px; /* Nagyobb gomb */
-    margin-top: 20px; /* Térköz a gomb felett */
+    padding: 20px 40px; /* Még nagyobb gomb */
+    margin: 0 auto 20px; /* Automatikus szélelés és térköz alatta */
+    color: white; /* Fehér szöveg */
+    background-color: transparent; /* Átlátszó háttér */
+    border: none; /* Nincs keret */
+    cursor: pointer; /* Mutató ikon változása */
+  }
+  #generate:hover {
+    color: blue; /* Kék szín az egérrel való fölévitelkor */
   }
   #names { 
-    margin-top: 20px; /* Térköz a nevek listája felett */
+    margin-top: 20px;
+    font-size: 40px; /* Nagyobb méretű kigenerált nevek */
   }
 </style>
 </head>
@@ -28,18 +40,15 @@
 <button id="generate">Generate</button>
 <div id="names"></div>
 
-<script>
-  // Nevek tárolása
+<script>  
   const names = ['Heiko', 'Gábor', 'Vince', 'Jesus'];
 
-  // "Generate" gomb eseménykezelője
   document.getElementById('generate').addEventListener('click', function() {
     const shuffledNames = names
       .map(value => ({ value, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value);
 
-    // A nevek megjelenítése
     document.getElementById('names').innerHTML = shuffledNames.join(', ');
   });
 </script>
